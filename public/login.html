@@ -1,31 +1,43 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Masuk · Obrolan</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/theme.js"></script>
+  <script type="module" src="/js/login.js"></script>
+</head>
+<body class="auth-page">
+  <main class="auth-card">
+    <div class="brand brand-lg">
+      <img src="/icon.svg" alt="" width="40" height="40" />
+      <span>Obrolan</span>
+    </div>
+    <p class="muted" id="auth-subtitle">Masuk untuk mulai mengobrol secara realtime.</p>
 
-// 10. public/login.html
-<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"/><title>Login</title></head>
-<body>
-  <h2>Login</h2>
-  <form id="login-form">
-    <input type="text" id="username" placeholder="Username" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
-  <p>New user? <a href="register.html">Register</a></p>
-  <script>
-    document.getElementById('login-form').addEventListener('submit', async e => {
-      e.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const res = await fetch('/api/auth/login', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        localStorage.setItem('token', data.token);
-        window.location = '/';
-      } else alert(data.msg);
-    });
-  </script>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-login" aria-selected="true">Masuk</button>
+      <button type="button" role="tab" id="tab-register" aria-selected="false">Daftar</button>
+    </div>
+
+    <form id="auth-form" novalidate>
+      <label>
+        <span>Username</span>
+        <input id="username" name="username" autocomplete="username" required minlength="3" maxlength="20"
+          pattern="[a-zA-Z0-9_]{3,20}" autofocus />
+      </label>
+      <label>
+        <span>Password</span>
+        <input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" />
+      </label>
+      <p class="form-hint" id="form-hint" hidden>Username 3-20 karakter (huruf, angka, _). Password minimal 8 karakter.</p>
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <button class="btn btn-primary btn-block" id="submit" type="submit">Masuk</button>
+    </form>
+  </main>
 </body>
 </html>

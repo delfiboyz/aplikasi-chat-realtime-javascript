@@ -1,0 +1,14 @@
+{
+  "name": "Obrolan — Chat Realtime",
+  "short_name": "Obrolan",
+  "description": "Aplikasi chat realtime dengan channel, pesan langsung, dan reaksi.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f1117",
+  "theme_color": "#4f46e5",
+  "lang": "id",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
